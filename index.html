@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="my_project.css">
+    <title>Document</title>
+</head>
+<style>
+    @import url('https://fonts.googlea pis.com/css2?fomily=Clicker+Script &family=Poppins:wght@200;300;400;500;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Clicker+Script&family=Kings&family=Monsieur+La+Doulaise&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Parisienne&family=Pinyon+Script&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kings&family=Monsieur+La+Doulaise&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Parisienne&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+html{
+    scroll-behavior: smooth;
+}
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--first-color);
+    overflow-x: hidden;
+}
+/* -----------------scrollbar--------------------- */
+::-webkit-scrollbar{
+    width: .5rem;
+    background-color: var(--first-color);
+    border-radius: .5rem;
+}
+::-webkit-scrollbar-thumb{
+    background-color: var(--secend-color);
+    border-radius: .5rem;
+}
+::-webkit-scrollbar-thumb:hover{
+    background-color: var(--five-color);
+}
+
+/* :root{
+    --first-color: #ffffff;
+    --secend-color: #007FFF;
+    --third-color: #010B13;
+    --forth-color: #e0eff7;
+    --five-color: #16166B;
+} */
+
+:root{
+    --first-color: #ffffff;
+    --secend-color: #FF0800;
+    --third-color: #010B13;
+    --forth-color: rgb(242, 245, 248);
+    --five-color: #000;
+}
+/*  ------------scroll-up-----------------*/
+.scroll-up{
+    position: fixed;
+    bottom: 20px;
+    background-color: var(--five-color);
+    padding: 8px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: var(--first-color);
+    right: 20px;
+    z-index: 1000;
+    display: none;
+}
+nav{
+    display: flex;
+    height: 20px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 90px;
+    max-width: 100%;
+    position: fixed;
+    gap: 200px;
+    z-index: 100;
+    background-color: #fff;
+    inset: 0;
+
+}
+
+nav .logo{
+    font-size: 31px;
+    text-decoration: none;
+    color: #000;
+    font-style: italic;
+}
+nav .logo span{
+    font-weight: 600;
+    font-size: 40px;
+    font-family: 'Clicker Script', cursive;
+    
+}
+nav .logo i{
+    font-weight: 600;
+    font-size: 40px;
+    color: #000;
+}
+
+nav ul{
+    list-style: none;
+    display: flex;
+}
+nav ul li a{
+    margin: 9px 20px;
+    position: relative;
+    font-size: 19px;
+    text-decoration: none;
+    color:#000;
+    font-weight: 600;
+}
+nav ul li a::after{
+    position: absolute;
+    content: "";
+    left: 0;
+    bottom: -4px;
+    width:0%;
+    height: 2.4px;
+    transition: .5s;
+    background-color: var(--secend-color);
+}
+nav ul li a:hover::after{
+    color: var(--secend-color);
+    width: 100%;
+}
+.container{
+    padding-top: 80px;
+    min-height: 500px;
+    padding-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    align-items: center;
+    color: var(--third-color);
+}
+.static-text{
+    display: inline;
+    color: var(--third-color);
+    font-size: 40px;
+    line-height: 60px;
+}
+.text-container{
+    color: var(--secend-color);
+    display: flex;
+    font-size: 40px;
+    align-items: center;
+    height: 60px;
+    font-weight: 500;
+}
+.text-container .dynamic-text {
+    height: 60px; 
+    line-height: 60px;
+    overflow: hidden;
+}
+.text-container .dynamic-text li{
+    font-size: 40px;
+    list-style: none;
+    font-weight: 500;
+    position: relative;
+    top: 0;
+    animation: slide 16s steps(4) infinite;
+}
+@keyframes slide{
+    100%{
+        top: -240px;
+    }
+}
+
+
+.text-container .dynamic-text li span{
+    position: relative;
+    margin: 5px 0;
+}
+.text-container .dynamic-text li span::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 50px;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    border-left: 4px solid var(--third-color);
+    animation: typing 4s steps(10) infinite;
+    background-color: var(--first-color);
+}
+@keyframes typing{
+    40%, 60%{
+        left: calc(100% + 40px);
+    }
+}
+.container button{
+    padding: 10px 20px;
+    font-size: 20px;
+    color: #fff;
+    font-weight: 400;
+    background-color: var(--secend-color);
+    border-radius: 20px;
+    border: none;
+    transition: all .4s;
+}
+.container button:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+.container .left{
+    margin-top: 0;
+}
+.left h1 span{
+    color: var(--secend-color);
+    font-family: 'Clicker Script', cursive;
+    font-size: 42px;
+    font-weight: 900;
+}
+.container .left h1{
+    font-size: 38px;
+}
+.container .right img{
+    width: 320px;
+    height: 440px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.container .left p{
+    font-size: 28px;
+    font-weight: 200;
+}
+/* ---------------about------------------- */
+#about{
+    min-height: 550px;
+    display: flex;
+    color: var(--third-color);
+    justify-content: center;
+    align-items: center;
+    padding: 20px 60px;
+    gap: 140px;
+}
+#about .left{
+    max-width: 500px;
+}
+#about .right img{
+    width: 300px;
+    height: 380px;
+    object-fit: cover;
+    transform: scale(1.3);
+    border-radius: 10px;
+}
+#about .left h1{
+    font-size: 45px;
+    font-weight: 700;
+
+}
+#about .left h2{
+    font-size: 35px;
+    font-weight: 500;
+}
+#about .left p{
+    font-size: 18px;
+    font-weight: 400;
+}
+
+#about .left h2 span{
+    color: var(--secend-color);
+}
+#about .left button{
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: var(--secend-color);
+    color: var(--first-color);
+    border: 0;
+    border-radius: 10px;
+    transition: .4s;
+}
+#about .left button:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+/* ----------Skills--------------- */
+#skills{
+    min-height: 550px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    color: var(--third-color);
+    align-items: center;
+    justify-content: center;
+}
+.header-skill-head{
+    width: 100%;
+    display: grid;
+    place-items: center;
+    text-align: center;
+}
+.header-skill-head h2{
+    font-size: 40px;
+}
+.header-skill-head p{
+    font-size: 20px;
+}
+.header-skill-head h2 span{
+    color: var(--secend-color);
+}
+.skill-main{
+    width: 80%;
+    margin: auto;
+    padding: 0 50px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 270px;
+}
+.skill-main .skill-bar .info{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+.skill-main .skill-bar .info .percent{
+    font-weight: bold;
+}
+.skill-bar .bar{
+    width: 100%;
+    height: 10px;
+    background-color: #edebeb;
+    border-radius: 35px;
+    margin-top: 5px;
+    position: relative;
+}
+.skill-bar .bar span{
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    background-color: var(--secend-color);
+    border-radius: 25px;
+}
+.skill-main .skill-bar .bar .html{
+    width: 90%;
+    animation: html 4s ;
+}
+@keyframes html{
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 90%;
+    }
+}
+.skill-main .skill-bar .bar .css{
+    width: 85%;
+    animation: css 4s ;
+}
+@keyframes css{
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 85%;
+    }
+}
+.skill-main .skill-bar .bar .js{
+    width: 80%;
+    animation: js 4s ;
+}
+@keyframes js{
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 80%;
+    }
+}
+.skill-main .skill-bar .bar .sass{
+    width: 80%;
+    animation: sass 4s ;
+}
+@keyframes sass{
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 80%;
+    }
+}
+.skill-main .skill-bar .bar .react{
+    width: 75%;
+    animation: react 4s ;
+}
+@keyframes react{
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 75%;
+    }
+}
+.skill-main .skill-bar .bar .express{
+    width: 65%;
+    animation: express 4s ;
+}
+@keyframes express{
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 65%;
+    }
+}
+.skill-main .skill-bar .bar .node{
+    width: 70%;
+    animation: node 4s ;
+}
+@keyframes node{
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 70%;
+    }
+}
+.skill-main .skill-bar .bar .mongo{
+    width: 60%;
+    animation: mongo 4s ;
+}
+@keyframes mongo{
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 60%;
+    }
+}
+/* -----------services------------- */
+#services{
+    min-height: 550px;
+    display: flex;
+    justify-content: center;
+    color: var(--third-color);
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 70px;
+    padding-top: 40px;
+}
+.cols{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+#services .h1 span{
+    color: var(--secend-color);
+}
+#services .cols .card h2{
+    color: var(--five-color);
+    font-weight: 800;
+    font-size: 22px;
+}
+.card{
+    height: 185px;
+    width: 280px;
+    color: var(--third-color);
+    padding: 13px;
+    margin-bottom: 8px;
+    text-align: center;
+    border-radius: 10px;
+    transition: .7s;
+    background-color: var(--first-color);
+    outline: var(--five-color) 2px solid;
+}
+.card:hover i{
+    background-color: var(--five-color);
+    color: #fff;
+    border-radius: 50%;
+    transition: .3s;
+    cursor: pointer;
+    padding: 1px;
+    height: 45px;
+    width: 45px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 18px;
+    align-items: center;
+    margin: auto;
+    font-size: 25px;
+}
+.card:hover{
+    box-shadow: 0 0 4px 4px #b4b4b4;
+    cursor: pointer;
+}
+.card i{
+    font-size: 25px;
+    color: var(--five-color);
+    margin-bottom: 14px;
+}
+.card button{
+    color: var(--secend-color);
+    border-radius: 5px;
+    padding: 7px 13px;
+    border: none;
+    background-color: var(--five-color);
+    color: var(--first-color);
+    font-weight: 600;
+    font-size: 15px;
+    display: none;
+}
+
+#services h1{
+    font-size: 29px;
+    text-align: center;
+}
+/* -------------contact---------------- */
+
+#projects .content2{
+  min-height: 600px;
+  padding-top: 105px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 14px;
+  padding: 0 100px;
+}
+#projects .content2 .pro  h1{
+  font-size: 40px;
+  margin-top: 100px;
+  align-items: center;
+}
+.content2 .cols{
+  display: flex;
+}
+.card1{
+  align-items: center;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+.content2 h1{
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.content2 span{
+  color: var(--secend-color);
+  font-size: 40px;
+}
+.content2 .cart{
+  height: 200px;
+  min-width: 300px;
+  margin: 0 16px;
+  border-radius: 25px;
+  position: relative;
+  overflow: hidden;
+}
+.content2 .cart:hover img{
+    transform: scale(1.1);
+    transition: .7s;
+}
+.content2 .cart .card1{
+  height: 100%;
+  position: absolute;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  left: 0;
+  bottom: 0;
+  opacity: 0;       
+  text-align: center;
+  transition: all .4s;
+  color: #fff;
+  background-image: linear-gradient(to top,var(--secend-color) 20%,transparent );
+
+}
+.content2 .cart .card1:hover{
+  opacity: 1;
+  cursor: pointer;
+  overflow: hidden;
+}
+.content2 .cart img{
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border-radius: 25px;
+  object-fit: cover ;
+}
+.content2 .cart .card1 p{
+  font-size: 16px;
+}
+.content2 .cart .card1 h1{
+  font-size: 25px;
+}
+.content2 .cart .card1 i{
+  background-color: #fff;
+  overflow: hidden;
+  color: #000;
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 18px;
+}
+/* -------------contact-------------- */
+#contact{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 550px;
+    flex-direction: column;
+    max-width: 100%;
+    margin-top: 60px;
+}
+#contact p{
+    font-size: 19px;
+}
+.content4{
+    padding: 11px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 200px;
+    box-shadow: 0 0 2px 2px #d00700;
+    border-radius: 10px;
+}
+#contact .h1 h1{
+    color: var(--secend-color);
+}
+#contact .h1 {
+    position: relative;
+}
+#contact .border{
+    position: absolute;
+    left: 0;
+    width: 50%;
+    background-color: var(--secend-color);
+    bottom: 13px;
+    height: 3px;
+}
+#contact .right{
+    display: flex;
+    justify-content: center;
+    height: 420px;
+    align-items: center;
+    flex-direction: column;
+}
+#contact .left .input{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+#contact .left form input{
+    background-color: var(--forth-color);
+    width: 100%;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px var(--secend-color) solid;
+}
+#contact .left form textarea{
+    display: block;
+    background-color: var(--forth-color);
+    width: 95%;
+    height: 150px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px var(--secend-color) solid;
+}
+#contact .left form input:focus,#contact .left form textarea:focus{
+    outline: none;
+    box-shadow: 0 0 1px 1px #d00700;
+}
+
+#contact .left form .btn-submit{
+    background-color: var(--secend-color);
+    color: var(--first-color);
+    padding: 7px 40px;
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 10px;
+    border: 0;
+    transition: .3s;
+}
+#contact i{
+    transition: .7s;
+}
+#contact .left form .btn-submit:hover i{
+    transform: rotate(45deg);
+}
+/* -----------footer----------------- */
+footer{
+    height: 100px;
+    background-color: var(--first-color);
+    color: var(--third-color);
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+
+/* ----------------responsive------------------ */
+
+
+@media (max-width:1000px){
+    nav{
+        padding: 20px 20px;
+    }
+    .container .left h1 span{
+    font-size: 27px;
+    font-weight: 900;
+    }
+    .container .left h1{
+    font-size: 25px;
+    font-weight: 500;
+    }
+    .container .left p{
+        font-size: 25px;
+    }
+    .text-container .dynamic-text li{
+        font-size: 40px;
+    }
+    .static-text{
+        font-size: 40px;
+    }
+    #about{
+        margin: 50px 0;
+    }
+    #about .left h1{
+        font-size: 25px;
+    }
+    #about .left p{
+        font-size: 19px;
+    }
+    #about .left h2{
+        font-size: 25px;
+    }
+    #about .left span{
+        font-size: 25px;
+    }
+    #about .left button{
+        font-size: 17px;
+    }
+
+    #services{
+        height: auto;
+        display: flex;
+        margin: 50px 0;
+        padding: 0;
+        justify-content: center;
+        align-items: center;
+    }
+    #services h1{
+        font-size: 25px;
+    }
+    #skills h2{
+        font-size: 30px;
+    }
+    #skills{
+        font-size: 17px;
+        margin: 60px 0;
+    }
+    #projects .content2 .pro h1,#projects .content2 .pro span{
+        font-size: 30px;
+    }
+    .cols{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    #services .cols .card{
+        width: 70%;
+        margin: auto;
+    }
+    .container .right{
+        display: none;
+    }
+    .container{
+        margin: auto;
+        font-size: 20px;
+    }
+    nav ul{
+        display: none;
+    }
+    #projects{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        margin: 50px 0;
+    }
+    #projects .card{
+        min-height: auto;
+    }
+    #projects .cols .cart{
+        width: 100%;
+        margin: auto;
+    }
+    #contact{
+        background-color: var(--first-color);
+        margin: 50px 0;
+    }
+    #contact .content4{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    #contact .right{
+        display: none;
+    }
+    #contact buutton, #contact buutton i{
+        font-size: 22px;
+    }
+    #contact .left form input{
+        width: 50%;
+    }
+    #contact .left form .btn-submit{
+        padding: 10px 17px;
+    }
+    #about{
+        display: flex;
+        padding: 0;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column-reverse;
+
+    }
+    #home{
+        padding: 40px 20px;
+    }
+    #skills{
+        padding: 0;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #skills .skill-main{
+    width: 80%;
+    margin: auto;
+    padding: 0 50px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    }
+    #skills .skill-main .skill-bar{
+        width: 80%;
+        margin: auto;
+    }
+    .scroll-up{
+        padding: 5px;
+    }
+}
+@media (max-width:600px) and(max-width:700px){
+    nav{
+        padding: 20px 20px;
+    }
+    .left h1 span{
+    font-size: 25px;
+    font-weight: 900;
+    }
+    .container .left h1{
+    font-size: 25px;
+    font-weight: 500;
+    }
+    .container .left p{
+        font-size: 20px;
+    }
+    .text-container .dynamic-text li{
+        font-size: 25px;
+    }
+    .static-text{
+        font-size: 25px;
+    }
+    #about .left h1{
+        font-size: 25px;
+    }
+    #about .left p{
+        font-size: 13px;
+    }
+    #about .left h2{
+        font-size: 25px;
+    }
+    #about .left span{
+        font-size: 25px;
+    }
+    #about .left button{
+        font-size: 17px;
+    }
+    #services{
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #services h1{
+        font-size: 25px;
+    }
+    #skills h2{
+        font-size: 30px;
+    }
+    #projects .content2 .pro h1,#projects .content2 .pro span{
+        font-size: 30px;
+    }
+    .cols{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    #services .cols .card{
+        width: 50%;
+        margin: auto;
+    }
+    .container .right{
+        display: none;
+    }
+    .container{
+        margin: auto;
+        font-size: 17px;
+    }
+    nav ul{
+        display: none;
+    }
+    #projects{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #projects .card{
+        min-height: auto;
+    }
+    #projects .cols .cart{
+        width: 100%;
+        margin: auto;
+    }
+    #contact{
+        background-color: var(--first-color);
+    }
+    #contact .content4{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    #contact .right{
+        display: none;
+    }
+    #about{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column-reverse;
+
+    }
+    #home{
+        padding: 40px 20px;
+    }
+    #skills{
+        padding: 0 20px;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #skills .skill-main{
+    width: 80%;
+    margin: auto;
+    padding: 0 50px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    }
+    #skills .skill-main .skill-bar{
+        width: 80%;
+        margin: auto;
+    }
+    .scroll-up{
+        padding: 5px;
+    }
+}
+</style>
+<body >
+
+    
+    <nav>
+        <a href="#" class="logo"><i class="fa-solid fa-graduation-cap"></i><span>P</span>ortfolio</a>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#projects">projects</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container" id="home">
+        <div class="left">
+            <h1>Hello,my name is <span>Fouad Benaissa</span></h1>
+            <div class="text-container">
+            <div class="static-text">I`am a</div>
+                <ul class="dynamic-text">
+                    <li><span>YouTuber</span></li>
+                    <li><span>Disiginer</span></li>
+                    <li><span>Developer</span></li>
+                    <li><span>freelancer</span></li>
+                </ul>
+            </div>
+            <p>I`m a web Designer with extensive experience for over 10<br> years . My expertise is to create and website<br> design, graphic design, an many more...</p>
+            <button>More About Me</button>
+        </div>
+        <div class="right">
+            <img src="https://images.pexels.com/photos/34946639/pexels-photo-34946639.jpeg">
+        </div>
+    </div>
+
+    <section id="about">
+        <div class="right">
+            <img src="https://images.pexels.com/photos/34946643/pexels-photo-34946643.jpeg">
+        </div>
+        <div class="left">
+            <h1>About Me</h1>
+            <h2>Developer <span>& Designer</span></h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. tiae obcaecati iste, dignissimos aliquam expedita aspernatur voluptas totam, hic aperiam eligendi mollitia. Eos labore tenetur nisi et temporibus sint, at odit excepturi recusandae numquam aliquam. Ducimus exercitationem consequatur nobis, minus laborum quia rem obcaecati itaque alias autem sed necessitatibus temporibus nisi laudantium, velit aperiam?</p>
+            <button>Let`s Talk</button>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="header-skill-head">
+            <h2>My <span>Skills</span></h2>
+            <p>Here is my skills to represent my Expertise</p>
+        </div>
+        <div class="skill-main">
+            <div class="skill-bar">
+                <div class="info">
+                    <p>HTML</p>
+                    <p class="percent">90%</p>
+                </div>
+                <div class="bar">
+                    <span class="html"></span>
+                </div>
+            </div>
+            <div class="skill-bar">
+                <div class="info">
+                    <p>CSS</p>
+                    <p class="percent">85%</p>
+                </div>
+                <div class="bar">
+                    <span class="css"></span>
+                </div>
+            </div>
+            <div class="skill-bar">
+                <div class="info">
+                    <p>SASS</p>
+                    <p class="percent">80%</p>
+                </div>
+                <div class="bar">
+                    <span class="css"></span>
+                </div>
+            </div>
+            <div class="skill-bar">
+                <div class="info">
+                    <p>JAVA SCRIPT</p>
+                    <p class="percent">80%</p>
+                </div>
+                <div class="bar">
+                    <span class="js"></span>
+                </div>
+            </div>
+            <div class="skill-bar">
+                <div class="info">
+                    <p>REACT JS</p>
+                    <p class="percent">75%</p>
+                </div>
+                <div class="bar">
+                    <span class="react"></span>
+                </div>
+            </div>
+            <div class="skill-bar">
+                <div class="info">
+                    <p>NODE JS</p>
+                    <p class="percent">70%</p>
+                </div>
+                <div class="bar">
+                    <span class="node"></span>
+                </div>
+            </div>
+            <div class="skill-bar">
+                <div class="info">
+                    <p>EXPRESS JS</p>
+                    <p class="percent">65%</p>
+                </div>
+                <div class="bar">
+                    <span class="express"></span>
+                </div>
+            </div>
+            <div class="skill-bar">
+                <div class="info">
+                    <p>Mongo DB</p>
+                    <p class="percent">60%</p>
+                </div>
+                <div class="bar">
+                    <span class="mongo"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="services">
+        <div class="h1">
+            <h1>OUR <span>SERVICES</span></h1>
+        </div>
+        <div class="cols">
+            <div class="card">
+                <i class="fa-solid fa-code"></i>
+                <h2>Web Development</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit Accusamus</p>
+                <button>Read More</button>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-mobile-screen"></i>
+                <h2>APP DEVELOPMENT</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit Accusamus</p>
+                <button>Read More</button>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-paintbrush"></i>
+                <h2>Web Design</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit Accusamus</p>
+                <button>Read More</button>
+            </div>
+        </div>
+        <div class="cols">
+            <div class="card">
+                <i class="fa-solid fa-desktop"></i>
+                <h2>Responsive Design</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit Accusamus</p>
+                <button>Read More</button>
+            </div>
+            <div class="card">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <h2>Asvertising</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit Accusamus</p>
+                <button>Read More</button>
+            </div>
+            <div class="card">
+                <i class="fa-brands fa-wordpress"></i>
+                <h2>Wordpress</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit Accusamus</p>
+                <button>Read More</button>
+            </div>
+        </div>
+    </section>
+    <section id="projects">
+        <div class="content2">
+        <h1 class="pro">Latest <span>Projects</span></h1>
+        <div class="cols">
+        <div class="cart">
+            <img src="https://images.pexels.com/photos/7437491/pexels-photo-7437491.jpeg">
+            <div class="card1">
+                <a target="_blank" href="/css/cssf/fhtml.html"><i class="fas fa-external-link-alt"></i></a>
+                
+                <h1>Web Design</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+        </div>
+        <div class="cart">
+            <img src="https://images.pexels.com/photos/4841641/pexels-photo-4841641.jpeg">
+            <div class="card1">
+                <a target="_blank" href="/css/cssf/fhtml.html"><i class="fas fa-external-link-alt"></i></a>
+                <h1>Web Design</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+        </div>
+        <div class="cart">
+            <img src="https://images.pexels.com/photos/7988087/pexels-photo-7988087.jpeg">
+            <div class="card1">
+                <a target="_blank" href="/css/cssf/fhtml.html"><i class="fas fa-external-link-alt"></i></a>
+                <h1>Web Design</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+        </div>
+        </div>
+        <div class="cols">
+        <div class="cart">
+            <img src="https://images.pexels.com/photos/1181676/pexels-photo-1181676.jpeg">
+            <div class="card1">
+                <a target="_blank" href="/css/cssf/fhtml.html"><i class="fas fa-external-link-alt"></i></a>
+                <h1>Web Design</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+        </div>
+        <div class="cart">
+            <img src="https://images.pexels.com/photos/6804079/pexels-photo-6804079.jpeg">
+            <div class="card1">
+                <a target="_blank" href="/css/cssf/fhtml.html"><i class="fas fa-external-link-alt"></i></a>
+                <h1>Web Design</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+        </div>
+        <div class="cart">
+            <img src="https://images.pexels.com/photos/15141200/pexels-photo-15141200.jpeg">
+            <div class="card1">
+                <a target="_blank" href="/css/cssf/fhtml.html"><i class="fas fa-external-link-alt"></i></a>
+                <h1>Web Design</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+            </div>
+        </div>
+    </div>
+    </section>
+    <section id="contact">
+            
+            <div class="h1">
+            <h1>Contact Us <span class="border"></span></h1>
+            </div>
+        <div class="content4">
+       
+            <div class="left">
+                <form action="">
+                    <h2>My Client`s Stories</h2>
+                    <p>Emcoworing people in new a digital joumey with my super serices</p>
+                    <div class="input">
+                        <input type="text" placeholder="Full Name">
+                        <input type="text" placeholder="Last Name">
+                    </div>
+                    <div class="input">
+                        <input type="email" name="email" placeholder="Your Email">
+                        <input type="text" name="name" placeholder="How can we help you">
+                    </div>
+                    <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                    <button type="submit" class="btn-submit">Send Message    <i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <a href="#home" class="scroll-up" id="btn"><i class="fa-solid fa-arrow-up"></i></a>
+    <script>
+        function toggleDarkMode(){
+    let body = document.body
+    body.classList.toggle('dark-mode')
+}
+let btn = document.getElementById('btn')
+window.onscroll = function(){
+    if(scrollY >= 500){
+        btn.style.display = 'block'
+    }
+    else{
+        btn.style.display = 'none'
+    }
+}
+    </script>
+</body>
+</html>
